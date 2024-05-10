@@ -6,10 +6,9 @@ import { JwtAuthGuard } from '../../guard/auth/auth.guard';
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   profile(@Req() req: any) {
-    console.log('here!');
     return this.profileService.profile(req.user);
   }
 }

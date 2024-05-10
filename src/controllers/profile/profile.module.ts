@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { ProfileEntity } from '../../entities/auth.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { ProfileService } from './profile.service';
 import { ProfileController } from './profile.controller';
 
 @Module({
-  imports: [SequelizeModule.forFeature([ProfileEntity])],
+  imports: [SequelizeModule.forFeature([UserEntity])],
   providers: [ProfileService],
   controllers: [ProfileController],
   exports: [SequelizeModule],

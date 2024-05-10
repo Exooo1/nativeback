@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { ProfileEntity } from './entities/auth.entity';
+import { UserEntity } from './entities/user.entity';
 import { AuthModule } from './controllers/auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ProfileModule } from './controllers/profile/profile.module';
@@ -27,7 +27,7 @@ import { WordModule } from './controllers/word/word.module';
         username: config.get('DB_USER'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        models: [ProfileEntity, WordEntity],
+        models: [UserEntity, WordEntity],
         autoLoadModels: true,
         synchronize: true,
         logQueryParameters: false,

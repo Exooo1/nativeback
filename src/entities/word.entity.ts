@@ -1,5 +1,5 @@
-import { BelongsTo, Column, DataType, Model, Table } from 'sequelize-typescript';
-import { ProfileEntity } from './auth.entity';
+import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { UserEntity } from './user.entity';
 
 @Table({
   tableName: 'words',
@@ -22,6 +22,7 @@ export class WordEntity extends Model {
   @Column({ type: DataType.JSON })
   examples: string[];
 
-  @BelongsTo(() => ProfileEntity, 'profileId')
-  profile: ProfileEntity;
+  @ForeignKey(() => UserEntity)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
 }

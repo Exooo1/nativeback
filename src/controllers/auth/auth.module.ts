@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { ProfileEntity } from '../../entities/auth.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { TokenService } from '../../guard/auth/tokens.service';
@@ -25,12 +25,12 @@ import { TokensModule } from '../../guard/auth/tokens.module';
             },
           },
           defaults: {
-            from: 'vlasmaskalenchik1998@gmail.com',
+            from: config.get<string>('LOGIN'),
           },
         };
       },
     }),
-    SequelizeModule.forFeature([ProfileEntity]),
+    SequelizeModule.forFeature([UserEntity]),
   ],
   providers: [AuthService, ConfigService, TokenService],
   controllers: [AuthController],

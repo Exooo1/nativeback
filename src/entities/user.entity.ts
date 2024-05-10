@@ -1,11 +1,12 @@
 import { Column, DataType, HasMany, Model, Table, Unique } from 'sequelize-typescript';
 import { WordEntity } from './word.entity';
+import { EnumVerify } from '../constants/auth';
 
 @Table({
-  tableName: 'profile',
+  tableName: 'user',
   timestamps: true,
 })
-export class ProfileEntity extends Model {
+export class UserEntity extends Model {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -26,9 +27,9 @@ export class ProfileEntity extends Model {
   @Column({ type: DataType.STRING })
   surname: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.STRING, defaultValue: EnumVerify.NOT_VERIFIED })
   verify: string;
 
-  @HasMany(() => WordEntity, 'profileId')
+  @HasMany(() => WordEntity, 'userId')
   words: WordEntity[];
 }

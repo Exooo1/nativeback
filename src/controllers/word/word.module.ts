@@ -3,10 +3,10 @@ import { WordController } from './word.controller';
 import { WordService } from './word.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { WordEntity } from '../../entities/word.entity';
-import { ProfileEntity } from '../../entities/auth.entity';
+import { UserEntity } from '../../entities/user.entity';
 
 @Module({
-  imports: [SequelizeModule.forFeature([WordEntity, ProfileEntity])],
+  imports: [SequelizeModule.forFeature([WordEntity, UserEntity])],
   providers: [WordService],
   controllers: [WordController],
   exports: [SequelizeModule],

@@ -1,17 +1,24 @@
 export const validatorMessages = {
-  tString: 'The field should be a string',
-  tNumber: 'The field should be a number',
-  tBoolean: 'The field should be a boolean',
-  emptyField: 'The field can not be empty',
+  simpleType: 'the field should be a',
+  empty: 'the field cannot be',
 };
 
 export const returnValidatorMessage = (value: string, type: string) => {
-  return value + ` ${validatorMessages[type]}`;
+  let text = '';
+  switch (type) {
+    case 'empty':
+      text = validatorMessages[type];
+      break;
+    default:
+      text = validatorMessages['simpleType'];
+  }
+  return value[0].toUpperCase() + value.slice(1) + ` - ${text} ${type}`;
 };
 
 export enum validatorTypes {
-  tString = 'tString',
-  tNumber = 'tNumber',
-  tBoolean = 'tBoolean',
-  emptyField = 'emptyField',
+  string = 'string',
+  number = 'number',
+  boolean = 'boolean',
+  isArray = 'isArray',
+  empty = 'empty',
 }
