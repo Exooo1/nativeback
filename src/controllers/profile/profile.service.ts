@@ -1,9 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { IAuth } from '../../types/auth';
 import { InjectModel } from '@nestjs/sequelize';
 import { UserEntity } from '../../entities/user.entity';
 import { responseHelper, whereOptions } from '../../utils/responseHelper';
-import { WordEntity } from '../../entities/word.entity';
 
 @Injectable()
 export class ProfileService {
@@ -12,16 +10,13 @@ export class ProfileService {
     private userEntity: typeof UserEntity,
   ) {}
 
-  async profile(data: IAuth) {
+  async profile(id: string) {
     try {
-      const { id } = data;
       const whereUser = whereOptions({ id }, true);
-      const test = await this.userEntity.findOne({ where: { id: 1 }, include: [{ model: WordEntity }] });
-      console.log(test);
       const user = await this.userEntity.findOne(whereUser);
       if (!user) throw new HttpException('Not Found user', HttpStatus.NOT_FOUND);
       delete user.password;
-      return responseHelper('Test', test);
+      return responseHelper('Test');
     } catch (err) {
       const error = err as HttpException;
       let status: number;

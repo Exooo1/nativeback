@@ -23,6 +23,6 @@ export class WordEntity extends Model {
   examples: string[];
 
   @ForeignKey(() => UserEntity)
-  @Column({ type: DataType.INTEGER, allowNull: false })
-  userId: number;
+  @Column({ type: DataType.UUID, allowNull: false })
+  userId: string;
 }

@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsString, MinLength } from 'class-validator';
-import { returnValidatorMessage, validatorTypes } from '../utils/validator';
 
 export class SignUpDTO {
   @IsString()

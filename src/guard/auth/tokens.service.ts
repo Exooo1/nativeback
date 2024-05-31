@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { IAuth, TTokenResponse } from '../../types/auth';
 import { ConfigService } from '@nestjs/config';
+
 @Injectable()
 export class TokenService {
   constructor(

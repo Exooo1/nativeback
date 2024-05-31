@@ -1,4 +1,4 @@
-import { Column, DataType, HasMany, Model, Table, Unique } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
 import { WordEntity } from './word.entity';
 import { EnumVerify } from '../constants/auth';
 
@@ -7,12 +7,9 @@ import { EnumVerify } from '../constants/auth';
   timestamps: true,
 })
 export class UserEntity extends Model {
-  @Column({
-    type: DataType.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id: number;
+  @PrimaryKey
+  @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
+  id: string;
 
   @Unique
   @Column({ type: DataType.STRING })
