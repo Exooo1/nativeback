@@ -1,4 +1,13 @@
-import { Column, DataType, HasMany, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
+import {
+  BeforeCreate,
+  Column,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
+  DataType,
+} from 'sequelize-typescript';
 import { WordEntity } from './word.entity';
 import { EnumVerify } from '../constants/auth';
 
@@ -29,4 +38,11 @@ export class UserEntity extends Model {
 
   @HasMany(() => WordEntity, 'userId')
   words: WordEntity[];
+
+  @BeforeCreate
+  static async handlerBeforeCreate(instance: UserEntity) {
+    instance.email = instance.email.trim();
+    instance.surname = instance.email.trim();
+    instance.name = instance.email.trim();
+  }
 }
